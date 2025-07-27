@@ -1,4 +1,4 @@
-import dev.frtgh01.Heading.Heading
+import dev.frtgh01.Heading.CardinalPoint
 import dev.frtgh01.InvalidCommandException
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -16,68 +16,68 @@ class MarsRoverTest {
         @Test
         @DisplayName("Should start at given position")
         fun testMarsRoverStartsAtGivenPosition() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
             marsRover.process("")
 
-            assert(marsRover.isAt(Point2D(1, 2), Heading.NORTH))
+            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.NORTH))
         }
 
         @Test
         @DisplayName("Should move forward when processing `f`")
         fun testMarsRoverMovesForwardWhenCommandFHeadingNorth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
             marsRover.process("f")
 
-            assert(marsRover.isAt(Point2D(1, 3), Heading.NORTH))
+            assert(marsRover.isAt(Point2D(1, 3), CardinalPoint.NORTH))
         }
 
         @Test
         @DisplayName("Should move backwards when processing `b`")
         fun testMarsRoverMovesBackwardsWhenCommandBHeadingNorth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
             marsRover.process("b")
 
-            assert(marsRover.isAt(Point2D(1, 1), Heading.NORTH))
+            assert(marsRover.isAt(Point2D(1, 1), CardinalPoint.NORTH))
         }
 
         @Test
         @DisplayName("Should rotate right when processing `r`")
         fun testMarsRoverRotatesRightWhenCommandRHeadingNorth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
             marsRover.process("r")
 
-            assert(marsRover.isAt(Point2D(1, 2), Heading.EAST))
+            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.EAST))
         }
 
         @Test
         @DisplayName("Should rotate left when processing `l`")
         fun testMarsRoverRotatesLeftWhenCommandLHeadingNorth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
             marsRover.process("l")
 
-            assert(marsRover.isAt(Point2D(1, 2), Heading.WEST))
+            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.WEST))
         }
 
         @Test
         @DisplayName("Should not process invalid command")
         fun testMarsRoverDoNotProcessInvalidCommandHeadingNorth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
 
             val exception = assertThrows(InvalidCommandException::class.java) {
                 marsRover.process("i")
             }
 
             assertEquals(MarsRover.invalidCommandErrorDescription(), exception.message)
-            assert(marsRover.isAt(Point2D(1, 2), Heading.NORTH))
+            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.NORTH))
         }
 
         @Test
         @DisplayName("Should move forward many times")
         fun testMarsRoverMovesForwardManyTimesHeadingNorth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
             marsRover.process("ff")
 
-            assert(marsRover.isAt(Point2D(1, 4), Heading.NORTH))
+            assert(marsRover.isAt(Point2D(1, 4), CardinalPoint.NORTH))
         }
     }
 
@@ -87,37 +87,37 @@ class MarsRoverTest {
         @Test
         @DisplayName("Should move forward when processing `f`")
         fun testMarsRoverMovesForwardWhenCommandFHeadingNorth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.EAST)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.EAST)
             marsRover.process("f")
 
-            assert(marsRover.isAt(Point2D(2, 2), Heading.EAST))
+            assert(marsRover.isAt(Point2D(2, 2), CardinalPoint.EAST))
         }
 
         @Test
         @DisplayName("Should move backwards when processing `b`")
         fun testMarsRoverMovesBackwardsWhenCommandBHeadingEast() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.EAST)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.EAST)
             marsRover.process("b")
 
-            assert(marsRover.isAt(Point2D(0, 2), Heading.EAST))
+            assert(marsRover.isAt(Point2D(0, 2), CardinalPoint.EAST))
         }
 
         @Test
         @DisplayName("Should rotate right when processing `r`")
         fun testMarsRoverRotatesRightWhenCommandRHeadingEast() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.EAST)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.EAST)
             marsRover.process("r")
 
-            assert(marsRover.isAt(Point2D(1, 2), Heading.SOUTH))
+            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.SOUTH))
         }
 
         @Test
         @DisplayName("Should rotate left when processing `l`")
         fun testMarsRoverRotatesLeftWhenCommandLHeadingEast() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.EAST)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.EAST)
             marsRover.process("l")
 
-            assert(marsRover.isAt(Point2D(1, 2), Heading.NORTH))
+            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.NORTH))
         }
     }
 
@@ -127,19 +127,19 @@ class MarsRoverTest {
         @Test
         @DisplayName("Should move forward, backwards and rotate when processing `ffbr`")
         fun testMarsRoverMovesForwardBackwardsRotateRightWhenCommandFFBRHeadingSouth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.SOUTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.SOUTH)
             marsRover.process("ffbr")
 
-            assert(marsRover.isAt(Point2D(1, 1), Heading.WEST))
+            assert(marsRover.isAt(Point2D(1, 1), CardinalPoint.WEST))
         }
 
         @Test
         @DisplayName("Should rotate left when processing `l`")
         fun testMarsRoverRotatesLeftWhenCommandLHeadingSouth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.SOUTH)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.SOUTH)
             marsRover.process("l")
 
-            assert(marsRover.isAt(Point2D(1, 2), Heading.EAST))
+            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.EAST))
         }
     }
 
@@ -149,19 +149,19 @@ class MarsRoverTest {
         @Test
         @DisplayName("Should move forward, backwards and rotate when processing `ffbr`")
         fun testMarsRoverMovesForwardBackwardsRotateRightWhenCommandFFBRHeadingSouth() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.WEST)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.WEST)
             marsRover.process("ffbr")
 
-            assert(marsRover.isAt(Point2D(0, 2), Heading.NORTH))
+            assert(marsRover.isAt(Point2D(0, 2), CardinalPoint.NORTH))
         }
 
         @Test
         @DisplayName("Should rotate left when processing `l`")
         fun testMarsRoverRotatesLeftWhenCommandLHeadingWest() {
-            val marsRover = MarsRover.at(Point2D(1, 2), Heading.WEST)
+            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.WEST)
             marsRover.process("l")
 
-            assert(marsRover.isAt(Point2D(1, 2), Heading.SOUTH))
+            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.SOUTH))
         }
     }
 }

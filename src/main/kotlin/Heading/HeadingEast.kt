@@ -2,9 +2,9 @@ package dev.frtgh01.Heading
 
 import dev.frtgh01.Point2D
 
-class HeadingEast {
-    fun forwardPoint() = Point2D(1, 0)
-    fun backwardPoint() = Point2D(-1, 0)
-    fun rightHeading() = Heading.SOUTH
-    fun leftHeading() = Heading.NORTH
+class HeadingEast : Heading {
+    override fun forwardPoint() = Point2D(1, 0)
+    override fun backwardPoint() = Point2D(-1, 0)
+    override fun rightHeading() = CardinalPoint.SOUTH
+    override fun leftHeading() = CardinalPoint.NORTH
 }
