@@ -11,6 +11,7 @@ class MarsRover(var position: Point2D, var heading: Heading) {
                 'f' -> this.position += Point2D(0, 1)
                 'b' -> this.position += Point2D(0, -1)
                 'r' -> this.heading = Heading.EAST
+                'l' -> this.heading = Heading.WEST
             }
         }
     }
