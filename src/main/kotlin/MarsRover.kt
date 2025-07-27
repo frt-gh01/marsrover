@@ -7,9 +7,18 @@ import dev.frtgh01.Heading.HeadingNorth
 import dev.frtgh01.Heading.HeadingSouth
 import dev.frtgh01.Heading.HeadingWest
 
-class MarsRover(var position: Point2D, var heading: CardinalPoint) {
+class MarsRover(var position: Point2D, var heading: Heading) {
     companion object MarsRoverClass {
-        fun at(position: Point2D, heading: CardinalPoint): MarsRover = MarsRover(position, heading)
+        fun at(position: Point2D, heading: CardinalPoint): MarsRover {
+            val currentHeading : Heading = when (heading) {
+                CardinalPoint.NORTH -> HeadingNorth()
+                CardinalPoint.EAST -> HeadingEast()
+                CardinalPoint.SOUTH -> HeadingSouth()
+                CardinalPoint.WEST -> HeadingWest()
+            }
+
+            return MarsRover(position, currentHeading)
+        }
         fun invalidCommandErrorDescription(): String = "Invalid Command"
     }
 
@@ -18,23 +27,16 @@ class MarsRover(var position: Point2D, var heading: CardinalPoint) {
     }
 
     private fun processCommand(command: Char) {
-        val currentHeading : Heading = when (this.heading) {
-            CardinalPoint.NORTH -> HeadingNorth()
-            CardinalPoint.EAST -> HeadingEast()
-            CardinalPoint.SOUTH -> HeadingSouth()
-            CardinalPoint.WEST -> HeadingWest()
-        }
-
         when (command) {
-            'f' -> this.position += currentHeading.forwardPoint()
-            'b' -> this.position += currentHeading.backwardPoint()
-            'r' -> this.heading = currentHeading.rightHeading()
-            'l' -> this.heading = currentHeading.leftHeading()
+            'f' -> this.position += this.heading.forwardPoint()
+            'b' -> this.position += this.heading.backwardPoint()
+            'r' -> this.heading = this.heading.rightHeading()
+            'l' -> this.heading = this.heading.leftHeading()
             else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
         }
     }
 
     fun isAt(position: Point2D, heading: CardinalPoint): Boolean {
-        return this.position == position && this.heading == heading
+        return this.position == position && this.heading.cardinalPoint() == heading
     }
 }
