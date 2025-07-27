@@ -1,13 +1,15 @@
 package dev.frtgh01
 
-class MarsRover(val position: Position2D, val heading: Heading) {
+class MarsRover(var position: Point2D, val heading: Heading) {
     companion object New{
-        fun at(position: Position2D, heading: Heading): MarsRover = MarsRover(position, heading)
+        fun at(position: Point2D, heading: Heading): MarsRover = MarsRover(position, heading)
     }
 
-    fun process(commands: String) {}
+    fun process(commands: String) {
+        commands.forEach { command -> this.position += Point2D(0, 1) }
+    }
 
-    fun isAt(position: Position2D, heading: Heading): Boolean {
+    fun isAt(position: Point2D, heading: Heading): Boolean {
         return this.position == position && this.heading == heading
     }
 }
