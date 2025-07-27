@@ -6,7 +6,10 @@ class MarsRover(var position: Point2D, val heading: Heading) {
     }
 
     fun process(commands: String) {
-        commands.forEach { command -> this.position += Point2D(0, 1) }
+        commands.forEach { command ->
+            if (command == 'f') this.position += Point2D(0, 1)
+            else this.position += Point2D(0, -1)
+        }
     }
 
     fun isAt(position: Point2D, heading: Heading): Boolean {

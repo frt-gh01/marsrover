@@ -23,4 +23,13 @@ class MarsRoverTest {
 
         assert(marsRover.isAt(Point2D(1, 3), Heading.NORTH))
     }
+
+    @Test
+    @DisplayName("Should move backwards when processing `b`")
+    fun testMarsRoverMovesBackwardsWhenCommandB() {
+        val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+        marsRover.process("b")
+
+        assert(marsRover.isAt(Point2D(1, 1), Heading.NORTH))
+    }
 }
