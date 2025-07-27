@@ -67,4 +67,13 @@ class MarsRoverTest {
         assertEquals(MarsRover.invalidCommandErrorDescription(), exception.message)
         assert(marsRover.isAt(Point2D(1, 2), Heading.NORTH))
     }
+
+    @Test
+    @DisplayName("Should move forward many times")
+    fun testMarsRoverMovesForwardManyTimes() {
+        val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+        marsRover.process("ff")
+
+        assert(marsRover.isAt(Point2D(1, 4), Heading.NORTH))
+    }
 }
