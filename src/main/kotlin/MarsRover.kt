@@ -25,17 +25,25 @@ class MarsRover(var position: Point2D, var heading: Heading) {
         commands.forEach(::processCommand)
     }
 
+    fun isAt(position: Point2D, heading: CardinalPoint): Boolean {
+        return this.position == position && this.heading.cardinalPoint() == heading
+    }
+
     private fun processCommand(command: Char) {
         when (command) {
-            'f' -> this.position += this.heading.forwardPoint()
-            'b' -> this.position += this.heading.backwardPoint()
-            'r' -> this.heading = headingFor(this.heading.rightCardinalPoint())
-            'l' -> this.heading = headingFor(this.heading.leftCardinalPoint())
+            'f' -> addToPosition(this.heading.forwardPoint())
+            'b' -> addToPosition(this.heading.backwardPoint())
+            'r' -> newHeadingFor(this.heading.rightCardinalPoint())
+            'l' -> newHeadingFor(this.heading.leftCardinalPoint())
             else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
         }
     }
 
-    fun isAt(position: Point2D, heading: CardinalPoint): Boolean {
-        return this.position == position && this.heading.cardinalPoint() == heading
+    private fun addToPosition(point: Point2D) {
+        this.position += point
+    }
+
+    private fun newHeadingFor(cardinalPoint: CardinalPoint) {
+        this.heading = headingFor(cardinalPoint)
     }
 }
