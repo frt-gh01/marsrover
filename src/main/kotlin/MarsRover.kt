@@ -30,7 +30,14 @@ class MarsRover(var position: Point2D, var heading: Heading) {
                     else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
                 }
             }
-            Heading.SOUTH -> TODO()
+            Heading.SOUTH -> {
+                when (command) {
+                    'f' -> this.position += Point2D(0, -1)
+                    'b' -> this.position += Point2D(0, 1)
+                    'r' -> this.heading = Heading.WEST
+                    else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
+                }
+            }
             Heading.WEST -> TODO()
         }
 
