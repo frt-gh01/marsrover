@@ -11,13 +11,26 @@ class MarsRover(var position: Point2D, var heading: Heading) {
     }
 
     private fun processCommand(command: Char) {
-        when (command) {
-            'f' -> this.position += Point2D(0, 1)
-            'b' -> this.position += Point2D(0, -1)
-            'r' -> this.heading = Heading.EAST
-            'l' -> this.heading = Heading.WEST
-            else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
+        when (this.heading) {
+            Heading.NORTH -> {
+                when (command) {
+                    'f' -> this.position += Point2D(0, 1)
+                    'b' -> this.position += Point2D(0, -1)
+                    'r' -> this.heading = Heading.EAST
+                    'l' -> this.heading = Heading.WEST
+                    else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
+                }
+            }
+            Heading.EAST -> {
+                when (command) {
+                    'f' -> this.position += Point2D(1, 0)
+                    else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
+                }
+            }
+            Heading.SOUTH -> TODO()
+            Heading.WEST -> TODO()
         }
+
     }
 
     fun isAt(position: Point2D, heading: Heading): Boolean {
