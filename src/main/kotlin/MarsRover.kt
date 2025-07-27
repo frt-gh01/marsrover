@@ -3,6 +3,7 @@ package dev.frtgh01
 import dev.frtgh01.Heading.Heading
 import dev.frtgh01.Heading.HeadingEast
 import dev.frtgh01.Heading.HeadingNorth
+import dev.frtgh01.Heading.HeadingSouth
 
 class MarsRover(var position: Point2D, var heading: Heading) {
     companion object MarsRoverClass {
@@ -36,10 +37,10 @@ class MarsRover(var position: Point2D, var heading: Heading) {
             }
             Heading.SOUTH -> {
                 when (command) {
-                    'f' -> this.position += Point2D(0, -1)
-                    'b' -> this.position += Point2D(0, 1)
-                    'r' -> this.heading = Heading.WEST
-                    'l' -> this.heading = Heading.EAST
+                    'f' -> this.position += HeadingSouth().forwardPoint()
+                    'b' -> this.position += HeadingSouth().backwardPoint()
+                    'r' -> this.heading = HeadingSouth().rightHeading()
+                    'l' -> this.heading = HeadingSouth().leftHeading()
                     else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
                 }
             }
