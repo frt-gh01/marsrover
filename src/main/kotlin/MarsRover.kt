@@ -17,10 +17,10 @@ class MarsRover(var position: Point2D, var heading: Heading) {
         when (this.heading) {
             Heading.NORTH -> {
                 when (command) {
-                    'f' -> this.position +=  HeadingNorth().forwardPoint()
+                    'f' -> this.position += HeadingNorth().forwardPoint()
                     'b' -> this.position += HeadingNorth().backwardPoint()
                     'r' -> this.heading = HeadingNorth().rightHeading()
-                    'l' -> this.heading = Heading.WEST
+                    'l' -> this.heading = HeadingNorth().leftHeading()
                     else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
                 }
             }
