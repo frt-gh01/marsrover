@@ -1,9 +1,13 @@
 import dev.frtgh01.Heading
+import dev.frtgh01.InvalidCommandException
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 import dev.frtgh01.MarsRover;
 import dev.frtgh01.Point2D
+import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.assertAll
+import kotlin.test.assertEquals
 
 class MarsRoverTest {
     @Test
@@ -49,5 +53,18 @@ class MarsRoverTest {
         marsRover.process("l")
 
         assert(marsRover.isAt(Point2D(1, 2), Heading.WEST))
+    }
+
+    @Test
+    @DisplayName("Should not process invalid command")
+    fun testMarsRoverDoNotProcessInvalidCommand() {
+        val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+
+        val exception = assertThrows(InvalidCommandException::class.java) {
+            marsRover.process("i")
+        }
+
+        assertEquals(MarsRover.invalidCommandErrorDescription(), exception.message)
+        assert(marsRover.isAt(Point2D(1, 2), Heading.NORTH))
     }
 }

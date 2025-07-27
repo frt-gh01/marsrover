@@ -1,18 +1,22 @@
 package dev.frtgh01
 
 class MarsRover(var position: Point2D, var heading: Heading) {
-    companion object New{
+    companion object MarsRoverClass {
         fun at(position: Point2D, heading: Heading): MarsRover = MarsRover(position, heading)
+        fun invalidCommandErrorDescription(): String = "Invalid Command"
     }
 
     fun process(commands: String) {
-        commands.forEach { command ->
-            when (command) {
-                'f' -> this.position += Point2D(0, 1)
-                'b' -> this.position += Point2D(0, -1)
-                'r' -> this.heading = Heading.EAST
-                'l' -> this.heading = Heading.WEST
-            }
+        commands.forEach(::processCommand)
+    }
+
+    private fun processCommand(command: Char) {
+        when (command) {
+            'f' -> this.position += Point2D(0, 1)
+            'b' -> this.position += Point2D(0, -1)
+            'r' -> this.heading = Heading.EAST
+            'l' -> this.heading = Heading.WEST
+            else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
         }
     }
 
