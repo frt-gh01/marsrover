@@ -39,9 +39,14 @@ class MarsRover(var position: Point2D, var heading: Heading) {
                     else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
                 }
             }
-            Heading.WEST -> TODO()
+            Heading.WEST -> {
+                when (command) {
+                    'f' -> this.position += Point2D(-1, 0)
+                    'b' -> this.position += Point2D(1, 0)
+                    'r' -> this.heading = Heading.NORTH
+                }
+            }
         }
-
     }
 
     fun isAt(position: Point2D, heading: Heading): Boolean {

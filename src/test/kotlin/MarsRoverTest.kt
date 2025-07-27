@@ -142,4 +142,17 @@ class MarsRoverTest {
             assert(marsRover.isAt(Point2D(1, 2), Heading.EAST))
         }
     }
+
+    @Nested
+    @DisplayName("Heading West")
+    inner class HeadingWest {
+        @Test
+        @DisplayName("Should move forward, backwards and rotate when processing `ffbr`")
+        fun testMarsRoverMovesForwardBackwardsRotateRightWhenCommandFFBRHeadingSouth() {
+            val marsRover = MarsRover.at(Point2D(1, 2), Heading.WEST)
+            marsRover.process("ffbr")
+
+            assert(marsRover.isAt(Point2D(0, 2), Heading.NORTH))
+        }
+    }
 }
