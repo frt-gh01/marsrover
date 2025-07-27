@@ -32,4 +32,13 @@ class MarsRoverTest {
 
         assert(marsRover.isAt(Point2D(1, 1), Heading.NORTH))
     }
+
+    @Test
+    @DisplayName("Should rotate right when processing `r`")
+    fun testMarsRoverRotatesRightWhenCommandR() {
+        val marsRover = MarsRover.at(Point2D(1, 2), Heading.NORTH)
+        marsRover.process("r")
+
+        assert(marsRover.isAt(Point2D(1, 2), Heading.EAST))
+    }
 }
