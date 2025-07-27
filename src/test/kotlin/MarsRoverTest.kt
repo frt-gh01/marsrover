@@ -1,4 +1,4 @@
-import dev.frtgh01.Heading
+import dev.frtgh01.Heading.Heading
 import dev.frtgh01.InvalidCommandException
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

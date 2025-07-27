@@ -1,5 +1,8 @@
 package dev.frtgh01
 
+import dev.frtgh01.Heading.Heading
+import dev.frtgh01.Heading.HeadingNorth
+
 class MarsRover(var position: Point2D, var heading: Heading) {
     companion object MarsRoverClass {
         fun at(position: Point2D, heading: Heading): MarsRover = MarsRover(position, heading)
@@ -14,7 +17,7 @@ class MarsRover(var position: Point2D, var heading: Heading) {
         when (this.heading) {
             Heading.NORTH -> {
                 when (command) {
-                    'f' -> this.position += Point2D(0, 1)
+                    'f' -> this.position +=  HeadingNorth().forwardPoint()
                     'b' -> this.position += Point2D(0, -1)
                     'r' -> this.heading = Heading.EAST
                     'l' -> this.heading = Heading.WEST
