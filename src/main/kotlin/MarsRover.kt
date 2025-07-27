@@ -31,13 +31,21 @@ class MarsRover(var position: Point2D, var heading: Heading) {
 
     private fun processCommand(command: Char) {
         when (command) {
-            'f' -> addToPosition(this.heading.forwardPoint())
-            'b' -> addToPosition(this.heading.backwardPoint())
-            'r' -> newHeadingFor(this.heading.rightCardinalPoint())
-            'l' -> newHeadingFor(this.heading.leftCardinalPoint())
+            'f' -> moveForward()
+            'b' -> moveBackward()
+            'r' -> rotateRight()
+            'l' -> rotateLeft()
             else -> throw InvalidCommandException(MarsRover.invalidCommandErrorDescription())
         }
     }
+
+    private fun moveForward() = addToPosition(this.heading.forwardPoint())
+
+    private fun moveBackward() = addToPosition(this.heading.backwardPoint())
+
+    private fun rotateRight() = newHeadingFor(this.heading.rightCardinalPoint())
+
+    private fun rotateLeft() = newHeadingFor(this.heading.leftCardinalPoint())
 
     private fun addToPosition(point: Point2D) {
         this.position += point

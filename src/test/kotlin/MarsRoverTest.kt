@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import kotlin.test.assertEquals
 
 class MarsRoverTest {
+    @Test
+    @DisplayName("Should start at given position")
+    fun testMarsRoverStartsAtGivenPosition() {
+        val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
+        marsRover.process("")
+
+        assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.NORTH))
+    }
+
     @Nested
     @DisplayName("Heading North")
     inner class HeadingNorth {
-        @Test
-        @DisplayName("Should start at given position")
-        fun testMarsRoverStartsAtGivenPosition() {
-            val marsRover = MarsRover.at(Point2D(1, 2), CardinalPoint.NORTH)
-            marsRover.process("")
-
-            assert(marsRover.isAt(Point2D(1, 2), CardinalPoint.NORTH))
-        }
-
         @Test
         @DisplayName("Should move forward when processing `f`")
         fun testMarsRoverMovesForwardWhenCommandFHeadingNorth() {
