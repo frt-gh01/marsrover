@@ -5,19 +5,7 @@ import dev.frtgh01.Heading.Heading
 
 class MarsRover(var position: Point2D, var heading: Heading) {
     companion object MarsRoverClass {
-        // Map with all the possible Headings
-        // where the key is the CardinalPoint for that Heading.
-        val headings: Map<CardinalPoint, Heading> = listOf(
-                Heading(CardinalPoint.NORTH, Point2D(0, 1), CardinalPoint.EAST, leftCardinalPoint = CardinalPoint.WEST),
-                Heading(CardinalPoint.EAST, Point2D(1, 0), CardinalPoint.SOUTH, leftCardinalPoint = CardinalPoint.NORTH),
-                Heading(CardinalPoint.SOUTH, Point2D(0, -1), CardinalPoint.WEST, leftCardinalPoint = CardinalPoint.EAST),
-                Heading(CardinalPoint.WEST, Point2D(-1, 0), CardinalPoint.NORTH, leftCardinalPoint = CardinalPoint.SOUTH),
-            ).associateBy { heading -> heading.cardinalPoint() }
-
-        fun at(position: Point2D, cardinalPoint: CardinalPoint): MarsRover = MarsRover(position, headingFor(cardinalPoint))
-
-        fun headingFor(cardinalPoint: CardinalPoint): Heading = headings.getValue(cardinalPoint)
-
+        fun at(position: Point2D, heading: Heading): MarsRover = MarsRover(position, heading)
         fun invalidCommandErrorDescription(): String = "Invalid Command"
     }
 
@@ -25,8 +13,8 @@ class MarsRover(var position: Point2D, var heading: Heading) {
         commands.forEach(::processCommand)
     }
 
-    fun isAt(position: Point2D, heading: CardinalPoint): Boolean {
-        return this.position == position && this.heading.cardinalPoint() == heading
+    fun isAt(position: Point2D, heading: Heading): Boolean {
+        return this.position == position && this.heading == heading
     }
 
     private fun processCommand(command: Char) {
@@ -40,18 +28,18 @@ class MarsRover(var position: Point2D, var heading: Heading) {
     }
 
     private fun moveForward() {
-        this.position += this.heading.forwardPoint()
+        this.position += this.heading.forwardDelta()
     }
 
     private fun moveBackward() {
-        this.position -= this.heading.forwardPoint()
+        this.position -= this.heading.forwardDelta()
     }
 
-    private fun rotateRight() = newHeadingFor(this.heading.rightCardinalPoint())
+    private fun rotateRight() {
+        this.heading = this.heading.rightHeading()
+    }
 
-    private fun rotateLeft() = newHeadingFor(this.heading.leftCardinalPoint())
-
-    private fun newHeadingFor(cardinalPoint: CardinalPoint) {
-        this.heading = headingFor(cardinalPoint)
+    private fun rotateLeft() {
+        this.heading = this.heading.leftHeading()
     }
 }
