@@ -1,7 +1,6 @@
 package dev.frtgh01
 
-import dev.frtgh01.Heading.CardinalPoint
-import dev.frtgh01.Heading.Heading
+import dev.frtgh01.heading.Heading
 
 class MarsRover(var position: Point2D, var heading: Heading) {
     companion object MarsRoverClass {

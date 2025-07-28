@@ -1,11 +1,11 @@
-package dev.frtgh01.Heading
+package dev.frtgh01.heading
 
 import dev.frtgh01.Point2D
 
 class Heading(val cardinalPoint: CardinalPoint, val forwardDelta: Point2D,
               val rightCardinalPoint: CardinalPoint, val leftCardinalPoint: CardinalPoint) {
 
-    companion object MarsRoverClass {
+    companion object HeadingClass {
         // Map with all the possible Headings
         // where the key is the CardinalPoint for that Heading.
         val headings: Map<CardinalPoint, Heading> = listOf(

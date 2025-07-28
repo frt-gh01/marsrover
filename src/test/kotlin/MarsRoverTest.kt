@@ -1,13 +1,11 @@
-import dev.frtgh01.Heading.CardinalPoint
+import dev.frtgh01.heading.Heading
 import dev.frtgh01.InvalidCommandException
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Nested
-
-import dev.frtgh01.MarsRover;
-import dev.frtgh01.Heading.Heading;
+import dev.frtgh01.MarsRover
 import dev.frtgh01.Point2D
 import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class MarsRoverTest {
